@@ -50,7 +50,7 @@
       }
       .login{
         position: absolute;
-        top:35%;
+        top:37%;
         right: 20%;
         background: rgb(144, 151, 64);
         max-width: auto;
@@ -59,7 +59,7 @@
       }
       .text{
         position: absolute;
-        top:45%;
+        top:40%;
         left: 5%;
         background: #d0cece;
         max-width: auto;
@@ -146,6 +146,11 @@ form .btn2 {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
 }
+.OTP{
+    position: absolute;
+    left:63%;
+    top: 34%;
+}
 
     </style>
   </head>
@@ -189,7 +194,7 @@ form .btn2 {
             </li>
             <li class="nav-item">
               <a href="signup.php" class="btn btn-warning" role="button"
-                >Sign Up</a
+                >Sign in</a
               >
             </li>
           </ul>
@@ -203,24 +208,22 @@ form .btn2 {
 
     </nav>
 
+    <h6 class="OTP">Change Password</h6>
     <div class="login">
         <form action="">
             <div class="form-field">
                 <input type="email" placeholder="Email / Username" required/>
               </div>
+              <div class="form-field">
+                <input type="password" placeholder="New Password" required/>
+              </div>
+              <div class="form-field">
+                <input type="number" placeholder="OTP Number" required/>
+              </div>
+              <div class="form-field">
+                <button class="btn" type="submit">Submit</button>
+              </div>
               
-              <div class="form-field">
-                <input type="password" placeholder="Password" required/>                         </div>
-              
-              <div class="form-field">
-                <button class="btn" type="submit">Log in</button>
-              </div>
-              <div class="form-field">
-                <button class="btn2" type="submit">Create New Account</button>
-              </div>
-              <div class="form-field">
-                <button class="btn2" type="submit">Forgotten account?</button>
-              </div>
     </div>
     
     </section>
