@@ -48,18 +48,28 @@
 	    font: bold15px arial,sans-serif;
 	    text-shadow: none;
       }
-      .login{
+      .Stock{
         position: absolute;
-        top:37%;
+        top:15%;
         right: 20%;
         background: rgb(144, 151, 64);
         max-width: auto;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 10px;
       }
+        .Report{
+        position: absolute;
+        bottom: -300%;
+        right: 20%;
+        background: rgb(135, 206, 235);
+        max-width: auto;
+        padding: 50px;
+        border-radius: 10px;
+      }
+        
       .text{
         position: absolute;
-        top:40%;
+        top:45%;
         left: 5%;
         background: #d0cece;
         max-width: auto;
@@ -146,11 +156,6 @@ form .btn2 {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
 }
-.OTP{
-    position: absolute;
-    left:55.5%;
-    top: 34%;
-}
 
     </style>
   </head>
@@ -193,8 +198,8 @@ form .btn2 {
               >
             </li>
             <li class="nav-item">
-              <a href="signup.html" class="btn btn-warning" role="button"
-                >Sign in</a
+              <a href="signup.php" class="btn btn-warning" role="button"
+                >Sign Up</a
               >
             </li>
           </ul>
@@ -208,17 +213,28 @@ form .btn2 {
 
     </nav>
 
-    <h6 class="OTP">Please enter your email address to get the OTP Code</h6>
-    <div class="login">
+    <div class="Stock">
         <form action="">
             <div class="form-field">
-                <input type="email" placeholder="Email / Username" required/>
+                <input type="email" placeholder="Search Medicine" required/>
               </div>
+              
               <div class="form-field">
-                <button class="btn" type="submit">Submit</button>
+                <button class="btn" type="submit">Check Stock</button>
               </div>
-    </div>
+            
+          <div class="Report">
+        <form action="">
+            <div class="form-field">
+                <input type="email" placeholder="Month" required/>
+              </div>
+              
+              <div class="form-field">
+                <button class="btn" type="submit">Get Report</button>
+              </div>
     
+
+
     </section>
 
     <script
