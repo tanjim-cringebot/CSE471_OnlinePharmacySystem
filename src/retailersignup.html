@@ -48,14 +48,20 @@
 	    font: bold15px arial,sans-serif;
 	    text-shadow: none;
       }
-      .login{
+      .signup{
         position: absolute;
-        top:35%;
+        top:21%;
         right: 20%;
         background: rgb(144, 151, 64);
         max-width: auto;
         padding: 10px;
         border-radius: 5px;
+      }
+      .docprofile{
+        margin: auto;
+        position: absolute;
+        left: 35%;
+        color: #109aea;
       }
       .text{
         position: absolute;
@@ -132,20 +138,6 @@ form .btn {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
 }
-form .btn2 {
-  outline: none;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 auto;
-  padding: 0.5rem 2.5rem;
-  text-align: center;
-  background-color: #234411;
-  color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-  font-size: 17px;
-}
 
     </style>
   </head>
@@ -188,7 +180,7 @@ form .btn2 {
               >
             </li>
             <li class="nav-item">
-              <a href="signup.html" class="btn btn-warning" role="button"
+              <a href="signup.php" class="btn btn-warning" role="button"
                 >Sign Up</a
               >
             </li>
@@ -202,27 +194,43 @@ form .btn2 {
         <p>"""A Online solution where you can find Medicine and Doctor together"""</p>
 
     </nav>
-
-    <div class="login">
+    <h1 class="docprofile">Create New Retailer Profile</h1>
+    <div class="signup">
+        
         <form action="">
             <div class="form-field">
-                <input type="email" placeholder="Email / Username" required/>
+                <input type="name" placeholder="Name" required/>
               </div>
+              <div class="form-field">
+                <input type="email" placeholder="Email ID" required/>
+              </div>
+              <div class="form-field">
+                <input type="Phone" placeholder="Phone Number" required/>
+              </div>
+              <div class="form-field">
+                <input type="password" placeholder="New Password" required/>                        
+             </div>
+             <div class="form-field">
+                <input type="res no" placeholder="Drug License ID" required/>                        
+             </div>
+             <div class="form-field">
+                <label for="birthday"> Date of Birth: </label> </br>
+                <input type="date" id="birthday" name="birthday">
+            </div >
+            <div class="form-field">
+                <label for="birthday"> Gender: </label> </br>
+                <input type="radio" name="gender" value="male"> Male
+                <input type="radio" name="gender" value="female"> Female
+                
+            </div>
               
               <div class="form-field">
-                <input type="password" placeholder="Password" required/>                         </div>
-              
-              <div class="form-field">
-                <button class="btn" type="submit">Log in</button>
+                <button class="btn" type="submit">Sign Up</button>
               </div>
-              <div class="form-field">
-                <button class="btn2" type="submit">Create New Account</button>
-              </div>
-              <div class="form-field">
-                <button class="btn2" type="submit">Forgotten account?</button>
-              </div>
+
     </div>
-    
+
+
     </section>
 
     <script

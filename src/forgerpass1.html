@@ -48,33 +48,109 @@
 	    font: bold15px arial,sans-serif;
 	    text-shadow: none;
       }
-      .newid{
+      .login{
         position: absolute;
-        top: 45%;
-        left: 15%;
-        background: rgb(186, 198, 158);
-        padding: 10px;
-        text-align: center;
-        border-radius: 5px;
-      }
-      .info{
-        position: absolute;
-        top: 35%;
-        right: 15%;
-        background: rgb(186, 198, 158);
+        top:37%;
+        right: 20%;
+        background: rgb(144, 151, 64);
+        max-width: auto;
         padding: 10px;
         border-radius: 5px;
       }
       .text{
-        position: relative;
-        text-align: center;
+        position: absolute;
+        top:40%;
+        left: 5%;
+        background: #d0cece;
+        max-width: auto;
+        padding: 5px;
+        border-radius: 4px;
       }
-      .form-field{
-        position: relative;
-        background: rgb(146, 217, 156);
-        padding: 10px;
-        border-radius: 5px;
-      }
+      form {
+  width: 350px;
+  position: relative;
+}
+form .form-field::before {
+  font-size: 20px;
+  position: absolute;
+  left: 15px;
+  top: 17px;
+  color: #888888;
+  content: " ";
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+form .form-field:nth-child(1)::before {
+  width: 20px;
+  height: 20px;
+  top: 15px;
+}
+form .form-field:nth-child(2)::before {
+  background-image: url(img/lock-icon.png);
+  width: 16px;
+  height: 16px;
+}
+form .form-field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+form input {
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+  background-color: #fff;
+  border-radius: 4px;
+  border: none;
+  display: block;
+  padding: 0.9rem 0.7rem;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+  color: #4A4A4A;
+  text-indent: 40px;
+}
+form .btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.5rem 2.5rem;
+  text-align: center;
+  background-color: #47AB11;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+}
+form .btn2 {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.5rem 2.5rem;
+  text-align: center;
+  background-color: #234411;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+}
+.OTP{
+    position: absolute;
+    left:55.5%;
+    top: 34%;
+}
 
     </style>
   </head>
@@ -117,8 +193,8 @@
               >
             </li>
             <li class="nav-item">
-              <a href="logout.html" class="btn btn-warning" role="button"
-                >Log Out</a
+              <a href="signup.html" class="btn btn-warning" role="button"
+                >Sign in</a
               >
             </li>
           </ul>
@@ -126,65 +202,23 @@
         </div>
       </div>
     </nav>
+    <nav class= "text">
+        <h1 >Welcome to Online Pharmacy</h1>
+        <p>"""A Online solution where you can find Medicine and Doctor together"""</p>
 
+    </nav>
 
-    <h1 class="text-center">Welcome to Online Pharmacy</h1>
-    <br />
-
-    <section
-      class="box container bg-info justify-content-center align-items-center rounded-3"
-      id="subscribe"
-    >
-      <div>
-        <p>
-          Hello [Admin], Welcome to Control Panel.
-        </p>
-      </div>
-      <br />
-    </section>
-
-    <section class="newid">
-        <p class= "text">Create New ID</p>
-        
-        <div class="">
-            <label>New Account for Doctor: </label>
-            <button class="form-field" type="submit">Doctor</button>
-        </div>
-    </br>
-        <div class="">
-            <label>New Account for Retailer: </label>
-            <button class="form-field" type="submit">Retailer</button>
-          </div>
-
-    </section>
-    <section class="info">
-        <p class= "text">Management</p>
-        <div class="">
-            <label>Customer details:</label>
-            <button class="form-field" type="submit">Customer</button>
-          </div>
-        </br>
-          <div class="">
-            <label>Doctor details:</label>
-            <button class="form-field" type="submit">Doctor</button>
-          </div>
-        </br>
-          <div class="">
-            <label>Retailers details:</label>
-            <button class="form-field" type="submit">Retailer</button>
-          </div>
-        </br>
-        
-        <div class="">
-            <label>Order details: </label>
-            <button class="form-field" type="submit">Cart</button>
-        </div>
-    </br>
-        <div class="">
-            <label>Consultancy details:</label>
-            <button class="form-field" type="submit">Appointments</button>
-          </div>
-
+    <h6 class="OTP">Please enter your email address to get the OTP Code</h6>
+    <div class="login">
+        <form action="">
+            <div class="form-field">
+                <input type="email" placeholder="Email / Username" required/>
+              </div>
+              <div class="form-field">
+                <button class="btn" type="submit">Submit</button>
+              </div>
+    </div>
+    
     </section>
 
     <script
