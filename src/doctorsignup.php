@@ -211,7 +211,7 @@ form .btn {
               >
             </li>
             <li class="nav-item">
-              <a href="signup.html" class="btn btn-warning" role="button"
+              <a href="signup.php" class="btn btn-warning" role="button"
                 >Sign Up</a
               >
             </li>
