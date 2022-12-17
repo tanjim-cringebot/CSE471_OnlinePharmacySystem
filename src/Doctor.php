@@ -1,3 +1,33 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+	$user_data = check_login($con);
+
+	  if($_SERVER['REQUEST_METHOD'] == "POST")
+	  {
+	    //something was posted
+	    $myquery = $_POST['stylequery'];
+	    if(!empty($myquery))
+	    {
+	      //read from database
+	      $query = $myquery;
+	      $result = mysqli_query($con, $query);
+				while ($row= mysqli_fetch_assoc($result))
+				{
+						print_r($row);
+						echo "<br><br>";
+
+				}
+
+	        }
+					                         else{
+						                                  echo "Failed";
+					                                      }
+	      }
+
+	?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,6 +39,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Online Pharmacy</title>
     <style>
@@ -48,24 +79,52 @@
 	    font: bold15px arial,sans-serif;
 	    text-shadow: none;
       }
-      .login{
+      .Slot{
         position: absolute;
-        top:35%;
-        right: 20%;
-        background: rgb(144, 151, 64);
+        top:65%;
+        left: 5%;
+        background: rgb(95, 15, 199);
         max-width: auto;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 10px;
       }
+        
       .text{
         position: absolute;
-        top:45%;
+        top:5%;
         left: 5%;
         background: #d0cece;
         max-width: auto;
         padding: 5px;
         border-radius: 4px;
       }
+      .text_1{
+        position: absolute;
+        top:30%;
+        left: 5%;
+        background: #90c0d3;
+        max-width: auto;
+        padding: 5px;
+        border-radius: 4px;
+      }
+      .btn_1{
+        position: absolute;
+        top: 15%;
+        right: 10%;
+        background-color: DodgerBlue; /* Blue background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        padding: 12px 16px; /* Some padding */
+        font-size: 16px; /* Set a font size */
+        cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+
+      
       form {
   width: 350px;
   position: relative;
@@ -172,24 +231,21 @@ form .btn2 {
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item nav-text">
-              <a href="search.html" class="btn" role="button">Search</a>
+              <a href="search.php" class="btn" role="button">Search</a>
+            </li>
+            <li class="nav-item">
+                <a href="signup.php" class="btn btn-warning" role="button"
+                  >Update Profile</a
+                >
             </li>
             <li class="nav-item nav-text">
-              <a href="consultations.html" class="btn" role="button">Doctor's Consultations</a>
-            </li>
-            <li class="nav-item nav-text">
-              <a href="cart.html" class="btn" role="button"
-                >Cart</a
-              >
-            </li>
-            <li class="nav-item nav-text">
-              <a href="medicine_request.html" class="btn" role="button"
-                >Medicine Request</a
+              <a href="list of patients.php" class="btn" role="button"
+                >Pending Patients</a
               >
             </li>
             <li class="nav-item">
-              <a href="signup.html" class="btn btn-warning" role="button"
-                >Sign Up</a
+              <a href="signup.php" class="btn btn-warning" role="button"
+                >*Profile</a
               >
             </li>
           </ul>
@@ -202,27 +258,31 @@ form .btn2 {
         <p>"""A Online solution where you can find Medicine and Doctor together"""</p>
 
     </nav>
+    <nav class= "text_1">
+        <h1 >Md. Rakibul Hassan</h1>
+        <p>Qualification : MBBS, MCPS, FCPS(USA)</p>
+        <p>Expertise: Hepatology and Gastroenterology</p>
+        <p>Contact : 01987654321</p>
 
-    <div class="login">
+
+    </nav>
+    <button class="btn_1"><i class="fa fa-bars"></i> Check Prescription</button>
+
+
+    <div class="Slot">
         <form action="">
             <div class="form-field">
-                <input type="email" placeholder="Email / Username" required/>
+                <input type="email" placeholder="Available time" required/>
               </div>
               
               <div class="form-field">
-                <input type="password" placeholder="Password" required/>                         </div>
-              
-              <div class="form-field">
-                <button class="btn" type="submit">Log in</button>
+                <button class="btn" type="submit">Provide</button>
               </div>
-              <div class="form-field">
-                <button class="btn2" type="submit">Create New Account</button>
-              </div>
-              <div class="form-field">
-                <button class="btn2" type="submit">Forgotten account?</button>
-              </div>
-    </div>
+            
     
+    
+
+
     </section>
 
     <script

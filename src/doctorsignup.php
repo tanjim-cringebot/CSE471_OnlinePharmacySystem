@@ -1,3 +1,34 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$user_name = $_POST['user'];
+		$password = $_POST['pass'];
+    $utype =   $_POST['utype'];
+		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+		{
+
+			//save to database
+			$user_id = random_num(20);
+			$query = "insert into login (user,pass) values ('$user_name','$password')";
+
+			mysqli_query($con, $query);
+
+			header("Location: login.php");
+			die;
+		}else
+		{
+			echo "Please enter some valid information!";
+		}
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -50,12 +81,18 @@
       }
       .signup{
         position: absolute;
-        top:25%;
+        top:21%;
         right: 20%;
         background: rgb(144, 151, 64);
         max-width: auto;
         padding: 10px;
         border-radius: 5px;
+      }
+      .docprofile{
+        margin: auto;
+        position: absolute;
+        left: 35%;
+        color: #109aea;
       }
       .text{
         position: absolute;
@@ -174,7 +211,7 @@ form .btn {
               >
             </li>
             <li class="nav-item">
-              <a href="signup.php" class="btn btn-warning" role="button"
+              <a href="signup.html" class="btn btn-warning" role="button"
                 >Sign Up</a
               >
             </li>
@@ -188,8 +225,9 @@ form .btn {
         <p>"""A Online solution where you can find Medicine and Doctor together"""</p>
 
     </nav>
-
+    <h1 class="docprofile">Create New Doctor Profile</h1>
     <div class="signup">
+        
         <form action="">
             <div class="form-field">
                 <input type="name" placeholder="Name" required/>
@@ -202,6 +240,9 @@ form .btn {
               </div>
               <div class="form-field">
                 <input type="password" placeholder="New Password" required/>                        
+             </div>
+             <div class="form-field">
+                <input type="res no" placeholder="BM&DC Reg No" required/>                        
              </div>
              <div class="form-field">
                 <label for="birthday"> Date of Birth: </label> </br>

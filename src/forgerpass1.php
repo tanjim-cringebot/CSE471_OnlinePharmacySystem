@@ -1,3 +1,56 @@
+
+<?php
+
+
+	include("connection.php");
+
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+    // posted details
+    $code = $_POST['code'];
+    $user_name = $_POST['user_name'];
+    $query= "SELECT * FROM login WHERE user= '$user_name' ";
+    $result = mysqli_query($con, $query);
+    if($result)
+    {
+      if($result && mysqli_num_rows($result) > 0)
+      {
+          echo "User found";
+      }
+    else { echo "User NOT found"; }
+
+    }
+
+
+
+
+	}
+
+  	if($_SERVER['REQUEST_METHOD'] == "POST")
+  	{
+      // posted details
+      $code = $_POST['code'];
+      if (empty($code)){
+        die;
+      }
+  		if($code==="0000" )
+  		{
+
+  				header("Location: login.php");
+
+
+
+
+  		}else
+  		{
+  			echo "Please enter some valid information!";
+  		}
+  	}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,28 +101,18 @@
 	    font: bold15px arial,sans-serif;
 	    text-shadow: none;
       }
-      .Stock{
+      .login{
         position: absolute;
-        top:15%;
+        top:37%;
         right: 20%;
         background: rgb(144, 151, 64);
         max-width: auto;
         padding: 10px;
-        border-radius: 10px;
+        border-radius: 5px;
       }
-        .Report{
-        position: absolute;
-        bottom: -300%;
-        right: 20%;
-        background: rgb(135, 206, 235);
-        max-width: auto;
-        padding: 50px;
-        border-radius: 10px;
-      }
-        
       .text{
         position: absolute;
-        top:45%;
+        top:40%;
         left: 5%;
         background: #d0cece;
         max-width: auto;
@@ -156,6 +199,11 @@ form .btn2 {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
 }
+.OTP{
+    position: absolute;
+    left:55.5%;
+    top: 34%;
+}
 
     </style>
   </head>
@@ -198,8 +246,8 @@ form .btn2 {
               >
             </li>
             <li class="nav-item">
-              <a href="signup.php" class="btn btn-warning" role="button"
-                >Sign Up</a
+              <a href="signup.html" class="btn btn-warning" role="button"
+                >Sign in</a
               >
             </li>
           </ul>
@@ -213,28 +261,17 @@ form .btn2 {
 
     </nav>
 
-    <div class="Stock">
+    <h6 class="OTP">Please enter your email address to get the OTP Code</h6>
+    <div class="login">
         <form action="">
             <div class="form-field">
-                <input type="email" placeholder="Search Medicine" required/>
+                <input type="email" placeholder="Email / Username" required/>
               </div>
-              
               <div class="form-field">
-                <button class="btn" type="submit">Check Stock</button>
+                <button class="btn" type="submit">Submit</button>
               </div>
-            
-          <div class="Report">
-        <form action="">
-            <div class="form-field">
-                <input type="email" placeholder="Month" required/>
-              </div>
-              
-              <div class="form-field">
-                <button class="btn" type="submit">Get Report</button>
-              </div>
+    </div>
     
-
-
     </section>
 
     <script

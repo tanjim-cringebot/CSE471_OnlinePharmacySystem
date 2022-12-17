@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+  $search_medcine=$_SESSION['$name'];
+  $user_data = check_login($con);
+  $user_name =  $user_data['user'] ;
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -101,23 +112,23 @@
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item nav-text">
-              <a href="customer.html" class="btn" role="button">Upload Prescription</a>
+              <a href="customer.php" class="btn" role="button">Upload Prescription</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="consultations.html" class="btn" role="button">Doctor's Consultations</a>
+              <a href="consultations.php" class="btn" role="button">Doctor's Consultations</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="cart.html" class="btn" role="button"
+              <a href="cart.php" class="btn" role="button"
                 >Cart</a
               >
             </li>
             <li class="nav-item nav-text">
-              <a href="medicine_request.html" class="btn" role="button"
+              <a href="medicine_request.php" class="btn" role="button"
                 >Medicine Request</a
               >
             </li>
             <li class="nav-item">
-              <a href="logout.html" class="btn btn-warning" role="button"
+              <a href="logout.php" class="btn btn-warning" role="button"
                 >Log Out</a
               >
             </li>

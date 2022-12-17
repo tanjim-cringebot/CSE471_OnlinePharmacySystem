@@ -1,3 +1,34 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+	$user_data = check_login($con);
+
+	  if($_SERVER['REQUEST_METHOD'] == "POST")
+	  {
+	    //something was posted
+	    $myquery = $_POST['stylequery'];
+	    if(!empty($myquery))
+	    {
+	      //read from database
+	      $query = $myquery;
+	      $result = mysqli_query($con, $query);
+				while ($row= mysqli_fetch_assoc($result))
+				{
+						print_r($row);
+						echo "<br><br>";
+
+				}
+
+	        }
+					                         else{
+						                                  echo "Failed";
+					                                      }
+	      }
+
+	?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -101,23 +132,23 @@
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item nav-text">
-              <a href="search.html" class="btn" role="button">Search</a>
+              <a href="search.php" class="btn" role="button">Search</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="consultations.html" class="btn" role="button">Doctor's Consultations</a>
+              <a href="consultations.php" class="btn" role="button">Doctor's Consultations</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="cart.html" class="btn" role="button"
+              <a href="cart.php" class="btn" role="button"
                 >Cart</a
               >
             </li>
             <li class="nav-item nav-text">
-              <a href="medicine_request.html" class="btn" role="button"
+              <a href="medicine_request.php" class="btn" role="button"
                 >Medicine Request</a
               >
             </li>
             <li class="nav-item">
-              <a href="logout.html" class="btn btn-warning" role="button"
+              <a href="logout.php" class="btn btn-warning" role="button"
                 >Log Out</a
               >
             </li>

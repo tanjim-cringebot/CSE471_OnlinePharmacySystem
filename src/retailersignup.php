@@ -1,3 +1,33 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$user_name = $_POST['user'];
+		$password = $_POST['pass'];
+    $utype =   $_POST['utype'];
+		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+		{
+
+			//save to database
+			$user_id = random_num(20);
+			$query = "insert into login (user,pass) values ('$user_name','$password')";
+
+			mysqli_query($con, $query);
+
+			header("Location: login.php");
+			die;
+		}else
+		{
+			echo "Please enter some valid information!";
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,18 +78,24 @@
 	    font: bold15px arial,sans-serif;
 	    text-shadow: none;
       }
-      .login{
+      .signup{
         position: absolute;
-        top:37%;
+        top:21%;
         right: 20%;
         background: rgb(144, 151, 64);
         max-width: auto;
         padding: 10px;
         border-radius: 5px;
       }
+      .docprofile{
+        margin: auto;
+        position: absolute;
+        left: 35%;
+        color: #109aea;
+      }
       .text{
         position: absolute;
-        top:40%;
+        top:45%;
         left: 5%;
         background: #d0cece;
         max-width: auto;
@@ -132,25 +168,6 @@ form .btn {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
 }
-form .btn2 {
-  outline: none;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 auto;
-  padding: 0.5rem 2.5rem;
-  text-align: center;
-  background-color: #234411;
-  color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-  font-size: 17px;
-}
-.OTP{
-    position: absolute;
-    left:63%;
-    top: 34%;
-}
 
     </style>
   </head>
@@ -193,8 +210,8 @@ form .btn2 {
               >
             </li>
             <li class="nav-item">
-              <a href="signup.html" class="btn btn-warning" role="button"
-                >Sign in</a
+              <a href="signup.php" class="btn btn-warning" role="button"
+                >Sign Up</a
               >
             </li>
           </ul>
@@ -207,25 +224,43 @@ form .btn2 {
         <p>"""A Online solution where you can find Medicine and Doctor together"""</p>
 
     </nav>
-
-    <h6 class="OTP">Change Password</h6>
-    <div class="login">
+    <h1 class="docprofile">Create New Retailer Profile</h1>
+    <div class="signup">
+        
         <form action="">
             <div class="form-field">
-                <input type="email" placeholder="Email / Username" required/>
+                <input type="name" placeholder="Name" required/>
               </div>
               <div class="form-field">
-                <input type="password" placeholder="New Password" required/>
+                <input type="email" placeholder="Email ID" required/>
               </div>
               <div class="form-field">
-                <input type="number" placeholder="OTP Number" required/>
+                <input type="Phone" placeholder="Phone Number" required/>
               </div>
               <div class="form-field">
-                <button class="btn" type="submit">Submit</button>
-              </div>
+                <input type="password" placeholder="New Password" required/>                        
+             </div>
+             <div class="form-field">
+                <input type="res no" placeholder="Drug License ID" required/>                        
+             </div>
+             <div class="form-field">
+                <label for="birthday"> Date of Birth: </label> </br>
+                <input type="date" id="birthday" name="birthday">
+            </div >
+            <div class="form-field">
+                <label for="birthday"> Gender: </label> </br>
+                <input type="radio" name="gender" value="male"> Male
+                <input type="radio" name="gender" value="female"> Female
+                
+            </div>
               
+              <div class="form-field">
+                <button class="btn" type="submit">Sign Up</button>
+              </div>
+
     </div>
-    
+
+
     </section>
 
     <script

@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+	$user_data = check_login($con);
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+
+		$dtype = $_POST['dtype'];
+		$user_id =  $user_data['user'] ;
+		}
+
+?>
+
+<?php
+								$con= mysqli_connect("localhost","root","", "pharmacy");
+								$sql= 'SELECT * from retailer WHERE utype="r_id"';
+								$result= $con->query($sql);
+								if ($result->num_rows>0){
+									while($row= $result-> fetch_assoc()){
+									 echo	 "<tr><td>".$row['user_name'] . "</td><td>" .$row['user_id'] . "</td>" ;
+									}
+								}
+								else {
+									echo "No results";
+								}
+								$con->close();
+							 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,18 +80,28 @@
 	    font: bold15px arial,sans-serif;
 	    text-shadow: none;
       }
-      .login{
+      .Stock{
         position: absolute;
-        top:37%;
+        top:15%;
         right: 20%;
         background: rgb(144, 151, 64);
         max-width: auto;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 10px;
       }
+        .Report{
+        position: absolute;
+        bottom: -300%;
+        right: 20%;
+        background: rgb(135, 206, 235);
+        max-width: auto;
+        padding: 50px;
+        border-radius: 10px;
+      }
+        
       .text{
         position: absolute;
-        top:40%;
+        top:45%;
         left: 5%;
         background: #d0cece;
         max-width: auto;
@@ -146,11 +188,6 @@ form .btn2 {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
 }
-.OTP{
-    position: absolute;
-    left:63%;
-    top: 34%;
-}
 
     </style>
   </head>
@@ -180,21 +217,21 @@ form .btn2 {
               <a href="search.html" class="btn" role="button">Search</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="consultations.html" class="btn" role="button">Doctor's Consultations</a>
+              <a href="consultations.php" class="btn" role="button">Doctor's Consultations</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="cart.html" class="btn" role="button"
+              <a href="cart.php" class="btn" role="button"
                 >Cart</a
               >
             </li>
             <li class="nav-item nav-text">
-              <a href="medicine_request.html" class="btn" role="button"
+              <a href="medicine_request.php" class="btn" role="button"
                 >Medicine Request</a
               >
             </li>
             <li class="nav-item">
-              <a href="signup.html" class="btn btn-warning" role="button"
-                >Sign in</a
+              <a href="signup.php" class="btn btn-warning" role="button"
+                >Sign Up</a
               >
             </li>
           </ul>
@@ -208,24 +245,28 @@ form .btn2 {
 
     </nav>
 
-    <h6 class="OTP">Change Password</h6>
-    <div class="login">
+    <div class="Stock">
         <form action="">
             <div class="form-field">
-                <input type="email" placeholder="Email / Username" required/>
-              </div>
-              <div class="form-field">
-                <input type="password" placeholder="Old Password" required/>
-              </div>
-              <div class="form-field">
-                <input type="password" placeholder="New Password" required/>
-              </div>
-              <div class="form-field">
-                <button class="btn" type="submit">Submit</button>
+                <input type="email" placeholder="Search Medicine" required/>
               </div>
               
-    </div>
+              <div class="form-field">
+                <button class="btn" type="submit">Check Stock</button>
+              </div>
+            
+          <div class="Report">
+        <form action="">
+            <div class="form-field">
+                <input type="email" placeholder="Month" required/>
+              </div>
+              
+              <div class="form-field">
+                <button class="btn" type="submit">Get Report</button>
+              </div>
     
+
+
     </section>
 
     <script

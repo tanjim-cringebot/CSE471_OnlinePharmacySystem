@@ -1,3 +1,56 @@
+
+<?php
+
+
+	include("connection.php");
+
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+    // posted details
+    $code = $_POST['code'];
+    $user_name = $_POST['user'];
+    $query= "SELECT * FROM login WHERE user = '$user_name' ";
+    $result = mysqli_query($con, $query);
+    if($result)
+    {
+      if($result && mysqli_num_rows($result) > 0)
+      {
+          echo "User found";
+      }
+    else { echo "User NOT found"; }
+
+    }
+
+
+
+
+	}
+
+  	if($_SERVER['REQUEST_METHOD'] == "POST")
+  	{
+      // posted details
+      $code = $_POST['code'];
+      if (empty($code)){
+        die;
+      }
+  		if($code==="0000" )
+  		{
+
+  				header("Location: login.php");
+
+
+
+
+  		}else
+  		{
+  			echo "Please enter some valid information!";
+  		}
+  	}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,24 +101,18 @@
 	    font: bold15px arial,sans-serif;
 	    text-shadow: none;
       }
-      .signup{
+      .login{
         position: absolute;
-        top:21%;
+        top:37%;
         right: 20%;
         background: rgb(144, 151, 64);
         max-width: auto;
         padding: 10px;
         border-radius: 5px;
       }
-      .docprofile{
-        margin: auto;
-        position: absolute;
-        left: 35%;
-        color: #109aea;
-      }
       .text{
         position: absolute;
-        top:45%;
+        top:40%;
         left: 5%;
         background: #d0cece;
         max-width: auto;
@@ -138,6 +185,25 @@ form .btn {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
 }
+form .btn2 {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.5rem 2.5rem;
+  text-align: center;
+  background-color: #234411;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+}
+.OTP{
+    position: absolute;
+    left:63%;
+    top: 34%;
+}
 
     </style>
   </head>
@@ -164,24 +230,24 @@ form .btn {
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item nav-text">
-              <a href="search.html" class="btn" role="button">Search</a>
+              <a href="search.php" class="btn" role="button">Search</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="consultations.html" class="btn" role="button">Doctor's Consultations</a>
+              <a href="consultations.php" class="btn" role="button">Doctor's Consultations</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="cart.html" class="btn" role="button"
+              <a href="cart.php" class="btn" role="button"
                 >Cart</a
               >
             </li>
             <li class="nav-item nav-text">
-              <a href="medicine_request.html" class="btn" role="button"
+              <a href="medicine_request.php" class="btn" role="button"
                 >Medicine Request</a
               >
             </li>
             <li class="nav-item">
-              <a href="signup.html" class="btn btn-warning" role="button"
-                >Sign Up</a
+              <a href="signup.php" class="btn btn-warning" role="button"
+                >Sign in</a
               >
             </li>
           </ul>
@@ -194,43 +260,25 @@ form .btn {
         <p>"""A Online solution where you can find Medicine and Doctor together"""</p>
 
     </nav>
-    <h1 class="docprofile">Create New Doctor Profile</h1>
-    <div class="signup">
-        
+
+    <h6 class="OTP">Change Password</h6>
+    <div class="login">
         <form action="">
             <div class="form-field">
-                <input type="name" placeholder="Name" required/>
+                <input type="email" placeholder="Email / Username" required/>
               </div>
               <div class="form-field">
-                <input type="email" placeholder="Email ID" required/>
+                <input type="password" placeholder="Old Password" required/>
               </div>
               <div class="form-field">
-                <input type="Phone" placeholder="Phone Number" required/>
+                <input type="password" placeholder="New Password" required/>
               </div>
               <div class="form-field">
-                <input type="password" placeholder="New Password" required/>                        
-             </div>
-             <div class="form-field">
-                <input type="res no" placeholder="BM&DC Reg No" required/>                        
-             </div>
-             <div class="form-field">
-                <label for="birthday"> Date of Birth: </label> </br>
-                <input type="date" id="birthday" name="birthday">
-            </div >
-            <div class="form-field">
-                <label for="birthday"> Gender: </label> </br>
-                <input type="radio" name="gender" value="male"> Male
-                <input type="radio" name="gender" value="female"> Female
-                
-            </div>
+                <button class="btn" type="submit">Submit</button>
+              </div>
               
-              <div class="form-field">
-                <button class="btn" type="submit">Sign Up</button>
-              </div>
-
     </div>
-
-
+    
     </section>
 
     <script

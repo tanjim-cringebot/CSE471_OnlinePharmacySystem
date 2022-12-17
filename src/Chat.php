@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+	$user_data = check_login($con);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -301,23 +310,23 @@ form .btn2 {
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item nav-text">
-              <a href="search.html" class="btn" role="button">Search</a>
+              <a href="search.php" class="btn" role="button">Search</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="consultations.html" class="btn" role="button">Doctor's Consultations</a>
+              <a href="consultations.php" class="btn" role="button">Doctor's Consultations</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="cart.html" class="btn" role="button"
+              <a href="cart.php" class="btn" role="button"
                 >Cart</a
               >
             </li>
             <li class="nav-item nav-text">
-              <a href="medicine_request.html" class="btn" role="button"
+              <a href="medicine_request.php" class="btn" role="button"
                 >Medicine Request</a
               >
             </li>
             <li class="nav-item">
-              <a href="signup.html" class="btn btn-warning" role="button"
+              <a href="signup.php" class="btn btn-warning" role="button"
                 >Sign in</a
               >
             </li>
@@ -335,6 +344,19 @@ form .btn2 {
     <div class="login">
         <P><b>Ask your queries!</b></P>
         <div class="container darker">
+		<?php
+          $my_id=$user_data['user'];
+          $sql= "SELECT message_id, message, subject FROM chat WHERE to_id='$receiver_id'";
+          $res=mysqli_query($con, $sql);
+          // echo "<table border='1'>";
+          // echo "<tr><td>Sender_id</td><td>Time</td><td>Sender_username</td><td>txt</td></tr>";
+          while ($row= mysqli_fetch_assoc($res)){
+
+            //echo "<tr><td>{$row["sender_id"]}</td><td>{$row["time"]}</td><td>{$row["sender_username"]}</td><td>{$row["txt"]}</td></tr>";
+          }
+
+          echo "</table>";
+        ?>
             <img src="/img/customer.png" alt="Avatar" class="right">
             <p>Hello, Doctor</p>
             <span class="time-left">11:05</span>
