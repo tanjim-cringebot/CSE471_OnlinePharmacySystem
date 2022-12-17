@@ -1,3 +1,56 @@
+
+<?php
+
+
+	include("connection.php");
+
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+    // posted details
+    $code = $_POST['code'];
+    $user_name = $_POST['user_name'];
+    $query= "SELECT * FROM login WHERE user= '$user_name' ";
+    $result = mysqli_query($con, $query);
+    if($result)
+    {
+      if($result && mysqli_num_rows($result) > 0)
+      {
+          echo "User found";
+      }
+    else { echo "User NOT found"; }
+
+    }
+
+
+
+
+	}
+
+  	if($_SERVER['REQUEST_METHOD'] == "POST")
+  	{
+      // posted details
+      $code = $_POST['code'];
+      if (empty($code)){
+        die;
+      }
+  		if($code==="0000" )
+  		{
+
+  				header("Location: login.php");
+
+
+
+
+  		}else
+  		{
+  			echo "Please enter some valid information!";
+  		}
+  	}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
