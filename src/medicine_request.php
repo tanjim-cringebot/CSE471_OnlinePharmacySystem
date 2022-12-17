@@ -1,3 +1,22 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+$name = $_POST['name'];
+$type = $_POST['type'];
+$quantity = $_POST['quantity'];
+$company = $_POST['company'];
+
+$query = "INSERT INTO personal (name, type, quantity, company) VALUES($name', '$type', '$quantity', '$company')";
+mysqli_query($con,$query);
+
+header('location:customer.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
