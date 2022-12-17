@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+	$user_data = check_login($con);
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+
+		$dtype = $_POST['dtype'];
+		$user_id =  $user_data['user'] ;
+		}
+
+?>
+
+<?php
+								$con= mysqli_connect("localhost","root","", "pharmacy");
+								$sql= 'SELECT * from retailer WHERE utype="r_id"';
+								$result= $con->query($sql);
+								if ($result->num_rows>0){
+									while($row= $result-> fetch_assoc()){
+									 echo	 "<tr><td>".$row['user_name'] . "</td><td>" .$row['user_id'] . "</td>" ;
+									}
+								}
+								else {
+									echo "No results";
+								}
+								$con->close();
+							 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
