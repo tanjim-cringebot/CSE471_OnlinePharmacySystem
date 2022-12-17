@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$user_name = $_POST['user'];
+		$password = $_POST['pass'];
+    $utype =   $_POST['utype'];
+		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+		{
+
+			//save to database
+			$user_id = random_num(20);
+			$query = "insert into login (user,pass) values ('$user_name','$password')";
+
+			mysqli_query($con, $query);
+
+			header("Location: login.php");
+			die;
+		}else
+		{
+			echo "Please enter some valid information!";
+		}
+	}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -158,18 +190,18 @@ form .btn {
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item nav-text">
-              <a href="search.html" class="btn" role="button">Search</a>
+              <a href="search.php" class="btn" role="button">Search</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="consultations.html" class="btn" role="button">Doctor's Consultations</a>
+              <a href="consultations.php" class="btn" role="button">Doctor's Consultations</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="cart.html" class="btn" role="button"
+              <a href="cart.php" class="btn" role="button"
                 >Cart</a
               >
             </li>
             <li class="nav-item nav-text">
-              <a href="medicine_request.html" class="btn" role="button"
+              <a href="medicine_request.php" class="btn" role="button"
                 >Medicine Request</a
               >
             </li>
