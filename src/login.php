@@ -1,3 +1,62 @@
+<?php
+
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$user_name = $_POST['user'];
+		$password = $_POST['pass'];
+
+		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+		{
+
+			//read from database
+			$query = "select * from login where user = '$user_name' limit 1";
+			$result = mysqli_query($con, $query);
+
+			if($result)
+			{
+				if($result && mysqli_num_rows($result) > 0)
+				{
+
+					$user_data = mysqli_fetch_assoc($result);
+
+					if($user_data['pass'] === $password)
+					{
+
+						$_SESSION['user'] = $user_data['user'];
+						if($user_data['utype']==='doctor'){
+							header("Location: Doctor.php");
+						}
+						if($user_data['utype']==='customer'){
+							header("Location: Customer.php");
+						}
+						if($user_data['utype']==='retailer'){
+							header("Location: Retailer.php");
+						}
+						if($user_data['utype']==='admin'){
+							header("Location: admindashboard.php");
+						}
+
+						die;
+					}
+				}
+			}
+
+			echo "wrong username or password!";
+		}else
+		{
+			echo "wrong username or password!";
+		}
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -172,13 +231,13 @@ form .btn2 {
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item nav-text">
-              <a href="search.html" class="btn" role="button">Search</a>
+              <a href="search.php" class="btn" role="button">Search</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="consultations.html" class="btn" role="button">Doctor's Consultations</a>
+              <a href="consultations.php" class="btn" role="button">Doctor's Consultations</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="cart.html" class="btn" role="button"
+              <a href="cart.php" class="btn" role="button"
                 >Cart</a
               >
             </li>
@@ -188,7 +247,7 @@ form .btn2 {
               >
             </li>
             <li class="nav-item">
-              <a href="signup.html" class="btn btn-warning" role="button"
+              <a href="signup.php" class="btn btn-warning" role="button"
                 >Sign Up</a
               >
             </li>
